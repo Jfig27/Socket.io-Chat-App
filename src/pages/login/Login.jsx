@@ -13,7 +13,7 @@ export default function Login() {
     <input id="tab-1" type="radio" name="tab" class="sign-in" checked/>
             <label for="tab-1" class="tab">Sign In</label>
 		<input id="tab-2" type="radio" name="tab" class="for-pwd"/>
-            <label for="tab-2" class="tab">Forgot Password</label>
+            <label for="tab-2" class="tab"></label>
 		<div class="login-form">
 			<div class="sign-in-htm">
 				<div class="group">
@@ -21,7 +21,7 @@ export default function Login() {
 					<input onChange={(e) => setUser(e.target.value)} id="user" type="text" class="input"/>
 				</div>
 				<div class="group">
-					<label for="pass" class="label">Room</label>
+					<label for="pass" class="label">Room name</label>
 					<input onChange={(e) => setRoom(e.target.value)} id="pass" class="input" data-type="Room"/>
 				</div>
 				<div class="group">

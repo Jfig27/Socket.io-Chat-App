@@ -74,8 +74,8 @@ export default function Chat() {
 						<div class="card-header msg_head">
 							<div class="d-flex bd-highlight">
 								<div class="img_cont">
-									<img src="https://s11.favim.com/orig/7/773/7737/77378/jojos-bizarre-adventure-icons-jojos-icons-anime-Favim.com-7737857.jpg" class="rounded-circle user_img"/>
-									<span class="online_icon"></span>
+									<img src="https://th.bing.com/th/id/R.3aa58228f1812356b823febe6564e369?rik=d9Kg0QMHsjwc0Q&riu=http%3a%2f%2fvignette2.wikia.nocookie.net%2fjjba%2fimages%2fa%2fab%2fCoco_jumbo_prof.png%2frevision%2flatest%3fcb%3d20140608043315&ehk=SEP68VGMCZjEVpdbJOU6BXgDVJIP8kGfzzgMDOVYhnY%3d&risl=&pid=ImgRaw&r=0" class="rounded-circle user_img"/>
+									{/* <span class="online_icon"></span> */}
 								</div>
 								<div class="user_info">
 									<span>Room: {room}</span>
@@ -86,31 +86,20 @@ export default function Chat() {
                                 Active Users:
                                 {
                                     activeUsers.map((each, idx) => (
-                                        <li key={idx} class="users">{each.name}</li>
+                                        <div>
+                                            <span class="online_icon"></span>
+                                            <p key={idx} class="users">{each.name}</p>
+                                        </div>
+
                                     ))
                                 }
                             </div>
-							<div class="action_menu">
-								<ul>
-									<li><i class="fas fa-user-circle"></i> View profile</li>
-									<li><i class="fas fa-users"></i> Add to close friends</li>
-									<li><i class="fas fa-plus"></i> Add to group</li>
-									<li><i class="fas fa-ban"></i> Block</li>
-								</ul>
-							</div>
 						</div>
 						<div class="card-body msg_card_body" id="chat-body">
-                        <ul>
-                            {
-                                messages.map((msg, idx) => (
-                                    <li key={idx}>{JSON.stringify(msg)}</li>
-                                ))
-                            }
-                        </ul>
                             {
                                 messages.map((e, i) => (
 
-                                    e.user !== user?.toLowerCase() ? <>
+                                    e.user !== user?.toLowerCase() && e.user !== "admin" ? <>
                                         <div key={i} class="d-flex justify-content-start mb-4">
                                             <div class="img_cont_msg">
                                                 <img src="https://s11.favim.com/orig/7/773/7737/77378/jojos-bizarre-adventure-icons-jojos-icons-anime-Favim.com-7737857.jpg" class="rounded-circle user_img_msg"/>
@@ -119,7 +108,7 @@ export default function Chat() {
 									            {e.text}
 									            <span class="msg_time">{e.user}</span>
 								            </div>
-                                        </div> </> : <>						
+                                        </div> </> : e.user === user?.toLowerCase() && e.user !== "admin" ?<>						
                                         <div key={i} class="d-flex justify-content-end mb-4">
 								            <div class="msg_cotainer_send">
 									            {e.text}
@@ -127,6 +116,16 @@ export default function Chat() {
 								            </div>
                                             <div class="img_cont_msg">
                                                 <img src="https://i.pinimg.com/originals/aa/a4/9f/aaa49f0db95279ad4eeb8fe8117e95ed.png" class="rounded-circle user_img_msg"/>
+                                            </div>
+							            </div>
+                                        </> : <> 
+                                        <div key={i} class="d-flex justify-content-center mb-4">
+								            <div class="msg_cotainer_admin">
+									            {e.text}
+									            <span class="msg_time_send">{e.user}</span>
+								            </div>
+                                            <div class="img_cont_msg">
+                                                <img src="https://s11.favim.com/orig/7/773/7737/77378/icons-jojos-bizarre-adventure-jojos-Favim.com-7737861.jpg" class="rounded-circle user_img_msg"/>
                                             </div>
 							            </div>
                                         </>
